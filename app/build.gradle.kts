@@ -1,6 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    // Kotlin Symbol Proccess: Para generar código automáticamente durante la compilación basado en anotaciones.
+    id("com.google.devtools.ksp")
+    // Se usa para procesar anotaciones, pero es más adecuado para bibliotecas que aún dependen del
+    // flujo de procesamiento de anotaciones de Java. Es mas lento de kps
+    id("kotlin-kapt")
 }
 
 android {
@@ -45,4 +50,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Room
+    val roomVersion = "2.5.2"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    implementation("com.getbase:floatingactionbutton:1.10.1")
 }
