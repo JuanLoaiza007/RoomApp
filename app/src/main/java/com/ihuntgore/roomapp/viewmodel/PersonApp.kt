@@ -5,7 +5,16 @@ import androidx.room.Room
 import com.ihuntgore.roomapp.data.PeopleDB
 
 class PersonApp : Application() {
-    val room = Room
-        .databaseBuilder(this, PeopleDB::class.java, "person")
-        .build()
+
+    lateinit var room: PeopleDB
+
+    override fun onCreate() {
+        super.onCreate()
+
+        room = Room.databaseBuilder(
+            applicationContext,
+            PeopleDB::class.java,
+            "person_database"
+        ).build()
+    }
 }
