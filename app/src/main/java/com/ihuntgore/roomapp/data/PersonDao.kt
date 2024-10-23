@@ -11,18 +11,18 @@ import com.ihuntgore.roomapp.model.Person
 interface PersonDao {
 
     @Query("SELECT * FROM Person")
-    fun getAll(): List<Person>
+    suspend fun getAll(): List<Person>
 
     @Query("SELECT * FROM Person WHERE id = :id")
-    fun getById(id: Int): Person
+    suspend fun getById(id: Int): Person
 
     @Update
-    fun update(person: Person)
+    suspend fun update(person: Person)
 
     @Insert
-    fun insert(people: List<Person>)
+    suspend fun insert(people: List<Person>)
 
     @Delete
-    fun delete(person: Person)
+    suspend fun delete(person: Person)
 
 }

@@ -1,9 +1,12 @@
 package com.ihuntgore.roomapp.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.ihuntgore.roomapp.R
 import com.ihuntgore.roomapp.viewmodel.PersonApp
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val peopleDb = app.room.personDao().getAll()
+        lifecycleScope.launch {
+            val peopleDb = app.room.personDao().getAll()
+            Log.d("", "onCreate ${peopleDb.size} people")
+        }
     }
 }
