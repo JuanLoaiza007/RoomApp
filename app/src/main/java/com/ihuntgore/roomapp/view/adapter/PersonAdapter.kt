@@ -1,14 +1,13 @@
-package com.ihuntgore.roomapp.view
+package com.ihuntgore.roomapp.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ihuntgore.roomapp.R
 import com.ihuntgore.roomapp.model.Person
+import com.ihuntgore.roomapp.view.viewholder.PersonViewHolder
 
-class PersonAdapter(private val onPersonClick: (Person) -> Unit) : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+class PersonAdapter(private val onPersonClick: (Person) -> Unit) : RecyclerView.Adapter<PersonViewHolder>() {
 
     private var peopleList: List<Person> = emptyList()
 
@@ -30,17 +29,5 @@ class PersonAdapter(private val onPersonClick: (Person) -> Unit) : RecyclerView.
     fun setPeople(people: List<Person>) {
         this.peopleList = people
         notifyDataSetChanged()
-    }
-
-    inner class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textViewName: TextView = itemView.findViewById(R.id.textViewNameValue)
-        private val textViewAge: TextView = itemView.findViewById(R.id.textViewAgeValue)
-        private val textViewAddress: TextView = itemView.findViewById(R.id.textViewAddressValue)
-
-        fun bind(person: Person) {
-            textViewName.text = person.name
-            textViewAge.text = person.age.toString()
-            textViewAddress.text = person.address
-        }
     }
 }
